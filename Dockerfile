@@ -14,5 +14,5 @@ EXPOSE 80 443
 
 COPY srcs /tmp/
 
-CMD cd /tmp/ && ls -l && bash setup.sh
-#&& tail -f /dev/null
+CMD bash /tmp/setup.sh && tail -f /dev/null
+
