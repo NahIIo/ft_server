@@ -44,7 +44,7 @@ service php7.3-fpm start
 service nginx restart
 
 # docker build -t ft_server .
-# docker run --name MYSERVER -it -p80:80 ft_server
+# docker run --name MYSERVER -p80:80 ft_server
 # https://localhost
 
 bash
