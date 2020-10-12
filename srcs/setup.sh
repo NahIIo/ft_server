@@ -1,31 +1,36 @@
 #!bin/bash
 
-chown -R www-data /var/www/*
-chmod -R 755 /var/www/*
-
 mkdir /var/www/localhost
 
 ####
 
-mv /tmp/nginx.conf /etc/nginx/sites-available/localhost
+mv /tmp/localhost /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 rm -rf /etc/nginx/sites-enabled/default
 
 ####
 
 service mysql start
-mysql -u root --skip-password << EOF
-CREATE DATABASE wordpress_db;
-GRANT ALL ON wordpress_db.* TO 'root'@'localhost' IDENTIFIED BY 'password';
+
+mysql << EOF
+CREATE DATABASE wordpress;
+GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost' IDENTIFIED BY 'password';
 FLUSH PRIVILEGES;
+UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user='root'
 EOF
+
+mysql -u root --password='password' < /var/www/wordpress.sql
 
 ####
 
+chown -R www-data /var/www/*
+chmod -R 755 /var/www/*
+
 mkdir /var/www/localhost/phpmyadmin
-wget https://files.phpmadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
-tar -xvf phpMyadmin-4.9.0.1-all-languages.tar.gz --strip-components 1 -C /var/www/localhost/phpmadmin
-mv /tmp/phpmyadmin.php /var/www/localhost/phpmyadmin/config.inc.php
+wget https://files.phpmyadmin.net/phpMyAdmin/4.9.6/phpMyAdmin-4.9.6-all-languages.tar.gz
+tar -xvf phpMyAdmin-4.9.6-all-languages.tar.gz --strip-components 1 -C /var/www/localhost/phpmyadmin
+mv /tmp/config.inc.php /var/www/localhost/phpmyadmin/config.inc.php
+rm phpMyAdmin-4.9.6-all-languages.tar.gz
 
 ####
 
@@ -33,7 +38,7 @@ cd /tmp/
 wget https://wordpress.org/latest.tar.gz
 tar -xvzf latest.tar.gz
 mv wordpress/ /var/www/localhost/wordpress
-mv /tmp/wp-config.php /var/www/localhost/wordpress
+mv /tmp/wp-config.php /var/www/localhost/wordpress/
 
 
 ####
@@ -51,6 +56,8 @@ chmod +x mkcert
 ./mkcert localhost
 
 ####
+
+cd /
 
 service nginx restart
 

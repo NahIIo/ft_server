@@ -12,6 +12,10 @@ RUN apt-get install mariadb-server -y
 
 EXPOSE 80 443
 
+COPY srcs/init.sql /var/www/
+
+COPY srcs/wordpress.sql /var/www/
+
 COPY srcs /tmp/
 
 CMD bash /tmp/setup.sh
