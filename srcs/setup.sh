@@ -59,10 +59,6 @@ chmod +x mkcert
 
 cd /
 
-service nginx restart
-
-# docker build -t ft_server .
-# docker run --name MYSERVER -p80:80 ft_server
-# https://localhost
+service nginx start
 
 bash
