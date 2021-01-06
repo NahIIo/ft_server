@@ -46,8 +46,8 @@ echo -e "\e[42m__________________ PHPMyAdmin Setup Finished __________________\e
 echo -e "\e[44m__________________ Setting up Wordpress __________________\e[0m";
 
 cd /tmp/
-wget https://wordpress.org/latest.tar.gz
-tar -xvzf latest.tar.gz
+wget https://fr.wordpress.org/wordpress-5.5.2-fr_FR.tar.gz
+tar -xvzf wordpress-5.5.2-fr_FR.tar.gz
 mv wordpress/ /var/www/localhost/wordpress
 mv /tmp/wp-config.php /var/www/localhost/wordpress/
 

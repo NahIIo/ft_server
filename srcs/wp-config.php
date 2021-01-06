@@ -28,6 +28,9 @@ define( 'DB_USER', 'root' );
 /** MySQL database password */
 define( 'DB_PASSWORD', 'password');
 
+/** STOP AUTO UPDATES */
+define( 'WP_AUTO_UPDATE_CORE', false );
+
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
 
