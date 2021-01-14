@@ -24,8 +24,7 @@ EOF
 
 mysql -u user --password='password' < /var/www/wordpress.sql;
 echo -e "\e[42m__________________ MYSQL Setup Finished __________________\e[0m";
-
-sleep 2;
+sleep .5;
 
 ####
 
