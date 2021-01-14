@@ -17,14 +17,15 @@ service mysql start
 
 mysql << EOF
 CREATE DATABASE wordpress;
-GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'user'@'localhost' IDENTIFIED BY 'password';
 FLUSH PRIVILEGES;
-UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user='root'
+UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user='user';
 EOF
 
-mysql -u root --password='password' < /var/www/wordpress.sql
-
+mysql -u user --password='password' < /var/www/wordpress.sql;
 echo -e "\e[42m__________________ MYSQL Setup Finished __________________\e[0m";
+
+sleep 2;
 
 ####
 
