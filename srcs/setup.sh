@@ -69,12 +69,14 @@ mv mkcert-v1.1.2-linux-amd64 mkcert
 chmod +x mkcert
 ./mkcert -install
 ./mkcert localhost
+chmod -x mkcert
 
 echo -e "\e[42m__________________ SSH Setup Finished __________________\e[0m";
 
 ####
 
 cd /
+chmod -w /tmp/autoindex/*
 
 echo -e "\e[42m__________________ GOOD TO GO ! __________________\e[0m";
 
