@@ -1,3 +1,4 @@
+#!/bin/bash
 #Simple script for autoindex automation
 
 test=$(grep -c "autoindex on" /etc/nginx/sites-available/localhost)
@@ -10,3 +11,5 @@ else
 	echo "Autoindex has been turned on!"
 	service nginx restart
 fi
+
+exit
