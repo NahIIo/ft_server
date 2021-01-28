@@ -6,7 +6,7 @@
 #    By: Julian <Julian@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/21 09:55:43 by Julian            #+#    #+#              #
-#    Updated: 2021/01/28 10:30:03 by Julian           ###   ########.fr        #
+#    Updated: 2021/01/28 12:56:41 by Julian           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 echo "Please enter what mode you want autoindex to be on: On/Off"
 
 read result
-if [[ $result == $'On' ]]
+if [[ $result == $'On' || $result == $'on' ]]
 then
 
 	test=$(grep -c "autoindex on" /etc/nginx/sites-available/localhost)
@@ -28,7 +28,7 @@ then
 		echo "Autoindex has been turned on!"
 		service nginx restart
 	fi
-elif [[ $result == $'Off' ]]
+elif [[ $result == $'Off' || $result == $'off' ]]
 then
 	test=$(grep -c "autoindex off" /etc/nginx/sites-available/localhost)
 
