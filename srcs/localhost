@@ -12,7 +12,6 @@ server {
 			ssl on;
 			ssl_certificate /root/mkcert/localhost.pem;
 			ssl_certificate_key /root/mkcert/localhost-key.pem;
-			add_header Strict-Transport-Security "max-age=31536000; always"; 
 
 			root /var/www/localhost;
 			
