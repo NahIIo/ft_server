@@ -6,7 +6,7 @@
 #    By: Julian <Julian@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/21 09:55:21 by Julian            #+#    #+#              #
-#    Updated: 2021/01/21 14:44:46 by Julian           ###   ########.fr        #
+#    Updated: 2021/03/18 15:53:57 by Julian           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,14 @@ chmod -R 755 /var/www/*
 echo -e "Setting up PHPMyAdmin ..";
 
 mkdir /var/www/localhost/phpmyadmin
-echo -e "[.   ] Ongoing"
+echo -e "[.   ] PHPMyAdmin download: ongoing\r\c"
 wget -q https://files.phpmyadmin.net/phpMyAdmin/4.9.6/phpMyAdmin-4.9.6-all-languages.tar.gz
-echo  -en "[... ] Ongoing"
+echo  -e "[... ] PHPMyAdmin download: ongoing\r\c"
+sleep 1;
 tar -xf phpMyAdmin-4.9.6-all-languages.tar.gz --strip-components 1 -C /var/www/localhost/phpmyadmin
 mv /tmp/config.inc.php /var/www/localhost/phpmyadmin/config.inc.php
 rm phpMyAdmin-4.9.6-all-languages.tar.gz
+echo  -en "[ \e[32mok\e[0m ] PHPMyAdmin download: finished\r\c"
 
 echo -e "\0"
 echo -e "PHPMyAdmin Setup Finished.";
@@ -63,10 +65,12 @@ echo -e "\0"
 echo -e "Setting up Wordpress ..";
 
 cd /tmp/
-echo -e "[.   ] Ongoing"
+echo -e "[.   ] Wordpress download: ongoing\r\c"
 wget -q https://fr.wordpress.org/wordpress-5.5.2-fr_FR.tar.gz
-echo -en "[... ] Ongoing"
+echo  -e "[... ] Wordpress download: ongoing\r\c"
+sleep 1;
 tar -xzf wordpress-5.5.2-fr_FR.tar.gz
+echo  -en "[ \e[32mok\e[0m ] Wordpress download: finished\r\c"
 mv wordpress/ /var/www/localhost/wordpress
 mv /tmp/wp-config.php /var/www/localhost/wordpress/
 
@@ -84,12 +88,13 @@ echo -e "Setting up SSH ..";
 
 mkdir ~/mkcert
 cd ~/mkcert
-echo -e "[.   ] Ongoing"
+echo  -e "[.   ] Ongoing\r\c"
 wget -q https://github.com/FiloSottile/mkcert/releases/download/v1.1.2/mkcert-v1.1.2-linux-amd64
 mv mkcert-v1.1.2-linux-amd64 mkcert
 chmod +x mkcert
+echo  -e "[... ] Ongoing\r\c"
 ./mkcert -install >/dev/null 2>&1
-echo  -en "[... ] Ongoing"
+echo  -en "[ \e[32mok\e[0m ] SSH with mkcert: done\r\c"
 ./mkcert localhost >/dev/null 2>&1
 chmod -x mkcert
 
